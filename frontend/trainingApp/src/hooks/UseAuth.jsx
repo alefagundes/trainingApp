@@ -17,7 +17,7 @@ export const UseAuth = () => {
 
   const authUser = (data) => {
     setAuthenticated(true);
-    localStorage.setItem("token", JSON.stringify(data.token));
+    localStorage.setItem("token", data.token);
   };
 
   const register = async (user) => {
@@ -62,10 +62,31 @@ export const UseAuth = () => {
     return request;
   };
 
+  const loginPersonal = async (personal) => {
+    let msgText = "Login realizado com sucesso";
+    let msgType = "success";
+
+    const request = axiosApi
+      .post("/users/login/personal", personal)
+      .then((response) => {
+        authUser(response.data);
+        setFlashMessage(msgText, msgType);
+        return true;
+      })
+      .catch((err) => {
+        console.log(err);
+        msgText = err.response.data.message;
+        msgType = "error";
+        setFlashMessage(msgText, msgType);
+        return false;
+      });
+    return request;
+  };
+
   const logout = () => {
     setAuthenticated(false);
     localStorage.removeItem("token");
   };
 
-  return { login, logout, register, authenticated };
+  return { login, loginPersonal, logout, register, authenticated };
 };

@@ -2,12 +2,14 @@
 
 import { createContext } from "react";
 import { UseAuth } from "../hooks/UseAuth";
+import { UseDiet } from "../hooks/UseDiet";
 export const ContextProv = createContext();
 
 export const TrainingContext = ({ children }) => {
-  const { login, logout, register, authenticated } = UseAuth();
+  const { login, loginPersonal, logout, register, authenticated } = UseAuth();
+  const {registerDiet} = UseDiet();
   return (
-    <ContextProv.Provider value={{ login, logout, register, authenticated }}>
+    <ContextProv.Provider value={{ login,loginPersonal, registerDiet, logout, register, authenticated }}>
       {children}
     </ContextProv.Provider>
   );

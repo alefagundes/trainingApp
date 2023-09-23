@@ -3,6 +3,14 @@ import { Navbar } from './components/Navbar/Navbar';
 import { Login } from './pages/Login/Login';
 import { Register } from './pages/Register/Register';
 import {Message} from './components/Message/Message'
+import {Dashboard} from './pages/dashboard/dashboard'
+import { NotFound } from './pages/404/404';
+import { Profile } from './pages/Profile/Profile';
+import { Training } from './pages/Training/Training';
+import { Dieta } from './pages/Dieta/Dieta';
+import { AddTraining } from './pages/AddTraining/AddTraining';
+import { PersonTrainingLogin } from './pages/PersonTrainingLogin/PersonTrainingLogin';
+
 
 function App() {
   return (
@@ -11,10 +19,15 @@ function App() {
         <Navbar />
         <Message/>
         <Routes>
-          <Route path="/" element={<h1>Home</h1>} />
+          <Route path="/" element={<Dashboard/>} />
+          <Route path="/profile" element={<Profile/>} />
+          <Route path="/diet" element={<Dieta/>} />
+          <Route path="/training" element={<Training/>} />
+          <Route path="/create" element={<AddTraining/>} />
           <Route path="/login" element={<Login/>} />
+          <Route path="/login/teacher" element={<PersonTrainingLogin/>} />
           <Route path="/register" element={<Register/>} />
-          <Route path="*" element={<h1>404</h1>} />
+          <Route path="*" element={<NotFound/>} />
         </Routes>
       </BrowserRouter>
     </>

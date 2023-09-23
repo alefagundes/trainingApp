@@ -50,6 +50,23 @@ const login = async (req, res) => {
   await createUserToken(user, req, res);
 };
 
+const loginPersonal = async (req, res) => {
+  const {coutEmail, userEmail} = req.body;
+  const user = await User.findOne({email: userEmail});
+  if(!user) {
+    res.status(422).json({message: 'E-mail inexiste ou incorreto!'});
+    return
+  }
+  const filterEmail = user.cout.filter((email) => email === coutEmail);
+  if(filterEmail){
+    const userPersonal = {
+      email: filterEmail[0],
+      id: user._id
+    }
+    await createUserToken(userPersonal, req, res);
+  }
+}
+
 const updateUser = async (req, res) => {
   //regex de validação de e-mail!
   const emailValid =
@@ -170,4 +187,4 @@ const checkUser = async (req, res) => {
   res.status(200).json(currentUser);
 };
 
-module.exports = { register, login, updateUser, checkUser };
+module.exports = { register, login, updateUser, checkUser, loginPersonal };

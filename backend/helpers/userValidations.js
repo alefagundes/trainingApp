@@ -53,4 +53,19 @@ const userLogin = () => {
   ];
 };
 
-module.exports = { userCreateValidation, userLogin };
+const personalLogin = () => {
+  return [
+    body("coutEmail")
+      .isString()
+      .withMessage("E-mail inexistente ou incorreto.")
+      .isEmail()
+      .withMessage("Insira um e-mail válido."),
+      body("userEmail")
+      .isString()
+      .withMessage("E-mail inexistente ou incorreto.")
+      .isEmail()
+      .withMessage("Insira um e-mail válido."),
+  ];
+};
+
+module.exports = { userCreateValidation, userLogin, personalLogin };

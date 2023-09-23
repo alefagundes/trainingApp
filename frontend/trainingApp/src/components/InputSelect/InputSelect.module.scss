@@ -1,0 +1,24 @@
+.selectContainer {
+  margin-bottom: 15px;
+  width: 100%;
+  & label {
+    font-size: 18px;
+    text-transform: capitalize;
+  }
+
+  & select {
+    width: 100%;
+    border: none;
+    border-bottom: 2px solid red;
+    text-transform: capitalize;
+    font-family:  Arial;
+    font-size: 18px;
+    &:focus {
+      outline: none;
+    }
+    font-size: 18px;
+    & option {
+      font-size: 18px;
+    }
+  }
+}

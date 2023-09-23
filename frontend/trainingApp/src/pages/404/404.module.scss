@@ -1,0 +1,13 @@
+.containerNotFound {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    height: 80vh;
+    width: 100%;
+
+    img {
+        height: 400px;
+        width: 850px;
+    }
+}

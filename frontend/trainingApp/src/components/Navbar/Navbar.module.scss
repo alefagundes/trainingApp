@@ -14,11 +14,14 @@
     width: 300px;
     text-decoration: none;
     & a {
+      display: flex;
+      align-items: center;
+      justify-content: center;
       text-decoration: none;
       text-transform: uppercase;
       font-weight: bold;
       color: #fff;
-      padding: 5px 8px;
+      padding: 5px 6px;
       border-radius: 8px;
       font-size: 18px;
       letter-spacing: 2px;
@@ -48,6 +51,7 @@
     font-size: 35px;
   }
   span {
-    color: rgb(110, 110, 228);
+    color: red;
+    margin-left: 2px;
   }
 }
