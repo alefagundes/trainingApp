@@ -2,5 +2,119 @@
     display: flex;
     align-items: center;
     justify-content: center;
+    padding: 20px 0px 70px 0px;
+    flex-direction: column;
+    h1 {
+        margin-top: 20px;
+    }
+    form {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        flex-direction: column;
     
+    & input[type='text'], 
+      input[type='password'], 
+      input[type='date'], 
+      input[type='number'], input[type='email']{
+        margin: 20px 0px;
+        border: none;
+        border-bottom: 2px solid red;
+        width: 450px;
+        font-size: 20px;
+        -webkit-box-shadow: 0 0 0 30px white inset;
+        &:focus {
+            outline: none;
+        }
+      }
+      input[type="submit"] {
+        margin-top: 10px;
+        text-transform: uppercase;
+        font-size: 18px;
+        letter-spacing: 2px;
+        height: 35px;
+        width: 100%;
+        background-color: red;
+        color: #000;
+        font-weight: bold;
+        border: none;
+        cursor: pointer;
+        &:hover {
+          transition: 0.5s;
+          box-shadow: 1px 3px 5px red;
+          color: red;
+          background-color: #333;
+        }
+      }
+    
+    }
+    
+}
+
+.containerCout {
+    input[type='email'] {
+        margin: 20px 0px;
+        border: none;
+        border-bottom: 2px solid red;
+        width: 450px;
+        font-size: 20px;
+        -webkit-box-shadow: 0 0 0 30px white inset;
+        &:focus {
+            outline: none;
+        }
+    }
+}
+
+.wrapList {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    max-width: 450px;
+    flex-wrap: wrap;
+}
+
+.listCout {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 10px;
+    & button {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        background-color: transparent;
+        border: none;
+        padding: 0;
+        margin: 0;
+        cursor: pointer;
+    svg{
+        font-size: 20px;
+        margin-left: 5px;
+        &:hover {
+            transition: .5s;
+            color: red;
+        }
+    }
+    }
+}
+
+.jsc {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 450px;
+    & button {
+        background: transparent;
+        border: none;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        padding: 0;
+        margin: 0;
+        cursor: pointer;
+        svg {
+            font-size: 20px;
+            margin-left: 5px;
+        }
+    }
 }

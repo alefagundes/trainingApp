@@ -11,7 +11,7 @@ export const InputSelect = ({ text, name, options, handleOnChange, value }) => {
         onChange={handleOnChange}
         value={value || ''}
       >
-        <option value={''}>Sua dieta é do tipo:</option>
+        <option value={''}>Tipos de dieta:</option>
         {options.map((option) => (
           <option value={option} key={option}>
             {option}

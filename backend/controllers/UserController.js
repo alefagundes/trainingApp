@@ -67,6 +67,20 @@ const loginPersonal = async (req, res) => {
   }
 }
 
+const getUser = async (req, res) => {
+  const token = getToken(req);
+  if(!token){
+    res.status(422).json({message: 'Usuário não autenticado'});
+    return
+  }
+  const user = await getUserByToken(token);
+  if(!user) {
+    res.status(422).json({message: 'Usuário inválido ou inexistente'});
+    return
+  }
+  res.status(200).json(user);
+}
+
 const updateUser = async (req, res) => {
   //regex de validação de e-mail!
   const emailValid =
@@ -187,4 +201,4 @@ const checkUser = async (req, res) => {
   res.status(200).json(currentUser);
 };
 
-module.exports = { register, login, updateUser, checkUser, loginPersonal };
+module.exports = { register, login, updateUser, checkUser, loginPersonal, getUser };

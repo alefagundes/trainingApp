@@ -1,5 +1,4 @@
 /* eslint-disable no-unused-vars */
-import { useEffect } from "react";
 import { axiosApi } from "../utils/api"
 import { UseFlashMessage } from "./UseFlashMessage";
 
@@ -18,7 +17,15 @@ export const UseDiet = () => {
             setFlashMessage(msgText, msgType);
         })
         return request
+    } 
+
+    const reqGetDiet = async (setData) => {
+        await axiosApi.get('/diet/yourDiet').then((response) => {
+            setData(response.data);
+        }).catch((err) => {
+            console.log(err);
+        })
     }
      
-    return {registerDiet}
+    return {registerDiet, reqGetDiet}
 }

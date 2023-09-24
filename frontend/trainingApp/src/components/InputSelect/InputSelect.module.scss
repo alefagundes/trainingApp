@@ -3,7 +3,6 @@
   width: 100%;
   & label {
     font-size: 18px;
-    text-transform: capitalize;
   }
 
   & select {
@@ -13,6 +12,7 @@
     text-transform: capitalize;
     font-family:  Arial;
     font-size: 18px;
+    margin-top: 10px;
     &:focus {
       outline: none;
     }

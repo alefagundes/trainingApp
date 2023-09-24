@@ -1,8 +1,8 @@
 /* eslint-disable react/prop-types */
-
-export const Input = ({ type, name, handlechange, placeholder, onclick, value, autocomplete }) => {
+import style from './Input.module.scss'
+export const Input = ({ type, name, handlechange, placeholder, onclick, value, autocomplete, classname }) => {
   return (
-    <input
+    <input className={`${style[classname]}`}
       type={type}
       name={name}
       onChange={handlechange}

@@ -47,5 +47,22 @@ const saveDiet = async (req, res) => {
     }
 }
 
+const getDiet = async (req, res) => {
+    const token = getToken(req);
+    if(!token) {
+        res.status(401).json({message: 'Token inválido.'});
+        return
+    }
+    const user = await getUserByToken(token);
 
-module.exports = { saveDiet };
+    if(!user) {
+        res.status(422).json({message: 'Usuário icorreto ou inexistente.'});
+        return
+    }
+    const diet = await Diet.findOne({userId: user._id});
+    
+    res.status(200).json(diet);
+}
+
+
+module.exports = { saveDiet, getDiet };
