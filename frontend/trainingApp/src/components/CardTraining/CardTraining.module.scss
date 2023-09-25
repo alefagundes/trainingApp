@@ -1,0 +1,15 @@
+.card {
+    border: 1px solid red;
+    margin: 10px 0px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    padding: 15px;
+    box-shadow: 1px 3px 5px red;
+
+    h3, p {
+        margin: 5px 0px;
+        font-family: Arial, Helvetica, sans-serif;
+    }
+}

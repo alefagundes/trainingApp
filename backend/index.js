@@ -22,9 +22,11 @@ app.use(express.static('public'))
 //rotes
 const UserRoutes = require('./routes/UserRoutes')
 const DietRoutes = require('./routes/DietRoutes')
+const TrainingRoutes = require('./routes/TrainingRoutes')
 
 app.use('/users', UserRoutes)
 app.use('/diet', DietRoutes)
+app.use('/training', TrainingRoutes)
 
 app.listen(5000, () => {
   console.log('app no arr na porta 5000')

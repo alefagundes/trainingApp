@@ -81,95 +81,27 @@ const getUser = async (req, res) => {
   res.status(200).json(user);
 }
 
-const updateUser = async (req, res) => {
-  //regex de validação de e-mail!
-  const emailValid =
-    /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
+const updateUserBack = async (req, res) => {
   const token = getToken(req);
   const user = await getUserByToken(token);
-  const { name, cpf, email, dataNascimento, telefone, password, confirmPassword } = req.body;
-
-  let image = "";
-  if (req.file) {
-    user.image = req.file.filename;
-  }
-  if (!name) {
-    res.status(422).json({ message: "O nome é obrigatório!" });
-    return;
-  } else if (name) {
-    const explodeName = name.split(" ");
-    if (!explodeName[1]) {
-      res.status(422).json({ message: "Nome completo é obrigatorio" });
-      return;
-    }
-  }
-  user.name = name;
-  //validação cpf
-  if (!cpf) {
-    res.status(422).json({ message: "CPF é obrigátorio!" });
-    return;
-  }
-  user.cpf = cpf;
-
-  //validação email
-  if (!email) {
-    res.status(422).json({ message: "O e-mail é obrigatório" });
-    return;
-  }
-  //test de e-mail com a regex de validação
-  if (email) {
-    const validate = emailValid.test(email);
-    if (!validate) {
-      res.status(422).json({ message: "Por favor, informe um e-mail válido!" });
-      return;
-    }
-  }
+  const { name, email, weight, birthDate, phone, password, cout } = req.body
+  
   const userExists = await User.findOne({ email: email });
 
   if (user.email !== email && userExists) {
     res.status(422).json({ message: "Por favor, utilize outro e-mail!" });
     return;
   }
+  user.name = name;
   user.email = email;
+  user.birthDate = birthDate;
+  user.phone = phone;
+  user.weight = weight;
+  user.cout = cout;
 
-  //atribuição da imagem
-  if (image) {
-    const imageName = req.file.filename;
-    user.image = imageName;
-  }
-
-  if (!dataNascimento) {
-    res.status(422).json({ message: "Data de nascimento é obrigatório!" });
-    return;
-  }
-  user.dataNascimento = dataNascimento;
-  if (!telefone) {
-    res.status(422).json({ message: "Telefone é obrigatório!" });
-    return;
-  }
-  user.telefone = telefone;
-
-  if (!password) {
-    res.status(422).json({ message: "Senha é obrigatório!" });
-    return;
-  } else if (password) {
-    if (password.length < 6) {
-      res.status(422).json({ message: "A senha deve possuir no mínimo 6 caracteries!" });
-      return;
-    }
-  }
-  if (!confirmPassword) {
-    res.status(422).json({ message: "Confirmação de senha é obrigatório!" });
-    return;
-  }
-  if (password !== confirmPassword) {
-    res.status(422).json({ message: "As senhas devem ser iguais!" });
-    return;
-  } else if (password == confirmPassword) {
-    const salt = await bcrypt.genSalt(12);
-    const passwordHash = await bcrypt.hash(password, salt);
-    user.password = passwordHash;
-  }
+  const salt = await bcrypt.genSalt(12);
+  const passwordHash = await bcrypt.hash(password, salt);
+  user.password = passwordHash;
 
   try {
     const updateUser = await User.findOneAndUpdate(
@@ -201,4 +133,4 @@ const checkUser = async (req, res) => {
   res.status(200).json(currentUser);
 };
 
-module.exports = { register, login, updateUser, checkUser, loginPersonal, getUser };
+module.exports = { register, login, updateUserBack, checkUser, loginPersonal, getUser };

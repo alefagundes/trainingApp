@@ -34,7 +34,8 @@ export const Dieta = () => {
                 <InputSelect name={'type'} text={'Selecione sua dieta'} 
                  value={data ? data.type : ''}
                  options={["hypercalorica", "hipocalorica", "deficit calorico"]} 
-                 handleOnChange={handleChange} />
+                 handleOnChange={handleChange}
+                 option0={'Tipos de dieta'} />
                 
                 <textarea name="diet" 
                  placeholder='Informe aqui sua dieta:'

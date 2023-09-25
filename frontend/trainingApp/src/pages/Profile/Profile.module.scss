@@ -78,6 +78,11 @@
     align-items: center;
     justify-content: center;
     margin-bottom: 10px;
+
+    & li {
+        font-family: Arial;
+        font-size: 17px;
+    }
     & button {
         display: flex;
         align-items: center;

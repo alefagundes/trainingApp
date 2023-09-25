@@ -1,0 +1,17 @@
+.spinner {
+display: flex;
+align-items: center;
+justify-content: center;
+padding: 40px 0px;
+
+& svg {
+    font-size: 35px;
+    animation: spin 1.5s linear infinite;
+}
+}
+
+@keyframes spin {
+to {
+    transform: rotate(360deg);
+}
+}

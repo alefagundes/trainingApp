@@ -9,23 +9,27 @@ const Training = mongoose.model(
         type: String,
         required: true,
       },
+      userId: {
+        type: String,
+        required: true,
+      },
       day: {
         type: String,
         required: true,
       },
       shift: {
+        type: Number,
+        required: true,
+      },
+      exercises: {
         type: String,
         required: true,
       },
-      observation: {
-        type: string,
-        required: false,
-      },
-      cout: {
+      observations: {
         type: String,
         required: false,
       },
-      status: {
+      cout: {
         type: String,
         required: false,
       },

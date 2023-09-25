@@ -1,6 +1,6 @@
 /* eslint-disable react/prop-types */
 import style from './InputSelect.module.scss'
-export const InputSelect = ({ text, name, options, handleOnChange, value }) => {
+export const InputSelect = ({ text, option0, name, options, handleOnChange, value }) => {
   
   return (
     <div className={style.selectContainer}>
@@ -11,7 +11,7 @@ export const InputSelect = ({ text, name, options, handleOnChange, value }) => {
         onChange={handleOnChange}
         value={value || ''}
       >
-        <option value={''}>Tipos de dieta:</option>
+        <option value={''}>{option0}</option>
         {options.map((option) => (
           <option value={option} key={option}>
             {option}

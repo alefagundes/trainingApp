@@ -5,19 +5,22 @@ import { Input } from '../../components/Input/Input'
 import {UseTrainingContext} from '../../hooks/UseTrainingContext'
 import {IoIosRemoveCircleOutline} from 'react-icons/io'
 import {GrAddCircle} from 'react-icons/gr'
+import { UseUser } from '../../hooks/UseUser'
 
 export const Profile = () => {
     const [user, setUser] = useState({});
     const [cout, setCout] = useState('');
     const [list, setList] = useState([]);
     const {getUser} = UseTrainingContext();
+    const {updateUser} = UseUser();
 
     useEffect(() => {
         getUser(setUser, setList);
     }, []);
 
-    const handleSubmit = async (e) => {
+    const handleSubmit = (e) => {
         e.preventDefault();
+        updateUser(user);
     }
     const handleChange = (e) => {
     setUser({...user, [e.target.name]: e.target.value});
@@ -58,7 +61,7 @@ export const Profile = () => {
     } 
     return (
         <div className={style.containerProfile}>
-            <h1>Perfil do usuário</h1>
+            <h1>Perfil do {user.name}</h1>
             <div className={style.containerCout}>
                 <div className={style.jsc}>
                     <Input
