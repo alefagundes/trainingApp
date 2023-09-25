@@ -21,5 +21,17 @@ export const UseTraining = () => {
         })
     }
 
-    return {trainingCreate, getTraining}
+    const getTrainigById = (id, setTraining) => {
+        axiosApi.get(`/training/${id}`,).then((response) => {
+            setTraining(response.data);
+        }).catch((err) => {
+            console.log(err);
+        })
+    }
+
+    const deleteTrainingById = (id) => {
+        axiosApi.delete('');
+    }
+
+    return {trainingCreate, getTraining, getTrainigById, deleteTrainingById}
 }

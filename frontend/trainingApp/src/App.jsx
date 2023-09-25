@@ -10,6 +10,7 @@ import { Training } from './pages/Training/Training';
 import { Dieta } from './pages/Dieta/Dieta';
 import { AddTraining } from './pages/AddTraining/AddTraining';
 import { PersonTrainingLogin } from './pages/PersonTrainingLogin/PersonTrainingLogin';
+import { DetailTraining } from './pages/DetailTraining/DetailTraining';
 
 
 function App() {
@@ -23,6 +24,7 @@ function App() {
           <Route path="/profile" element={<Profile/>} />
           <Route path="/diet" element={<Dieta/>} />
           <Route path="/training" element={<Training/>} />
+          <Route path="/training/:id" element={<DetailTraining/>} />
           <Route path="/create" element={<AddTraining/>} />
           <Route path="/login" element={<Login/>} />
           <Route path="/login/teacher" element={<PersonTrainingLogin/>} />

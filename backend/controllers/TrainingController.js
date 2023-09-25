@@ -50,4 +50,35 @@ const getAllTrainingBack = async (req, res) => {
     res.status(200).json(training);
 }
 
-module.exports = {trainingCreateBack, getAllTrainingBack}
+const getTrainingByIdBack = async (req, res) => {
+    const {id} = req.params;
+    if(!id) {
+        res.status(422).json({message: 'Erro: Id inválido'})
+        return
+    }
+    const token = getToken(req);
+    if(!token) {
+        res.status(422).json({message: 'Usuário inválido ou inexistente.'})
+        return
+    }
+    const user = await getUserByToken(token);
+
+    if(!user){
+        res.status(422).json({message: 'Usuário inválido ou inexistente.'})
+        return
+    }
+    const trainingById = await Training.findById(id);
+
+    if(!trainingById){
+      res.status(422).json({message: 'Treino inválido ou inexistente.'})
+      return
+    }
+
+    if(user._id != trainingById.userId){
+      res.status(422).json({message: 'Erro, traino inválido ou inexistente.'})
+      return
+    }
+    res.status(200).json(trainingById);
+}
+
+module.exports = {trainingCreateBack, getAllTrainingBack, getTrainingByIdBack}
