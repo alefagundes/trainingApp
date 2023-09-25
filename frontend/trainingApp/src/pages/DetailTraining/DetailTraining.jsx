@@ -8,11 +8,14 @@ export const DetailTraining = () => {
     const [training, setTraining] = useState({});
     const navigate = useNavigate();
     const {id} = useParams();
-    const {getTrainigById} = UseTraining();
+    const {getTrainigById, deleteTrainingById} = UseTraining();
 
     const handleRemove = () => {
-        
+        deleteTrainingById(id);
+        setTimeout(() => {
         navigate('/training');
+        }, 2000);
+        
     }
 
     useEffect(() => {

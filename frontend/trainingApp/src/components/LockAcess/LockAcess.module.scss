@@ -1,0 +1,19 @@
+.containerLockAcess {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    height: 80vh;
+    width: 100%;
+    h1 {
+        font-size: 50px;
+    }
+}
+
+.iconLock {
+    svg {
+        margin: 20px;
+        font-size: 120px;
+        color: red;
+    }
+}

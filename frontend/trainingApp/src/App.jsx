@@ -11,9 +11,11 @@ import { Dieta } from './pages/Dieta/Dieta';
 import { AddTraining } from './pages/AddTraining/AddTraining';
 import { PersonTrainingLogin } from './pages/PersonTrainingLogin/PersonTrainingLogin';
 import { DetailTraining } from './pages/DetailTraining/DetailTraining';
-
+import { UseTrainingContext } from './hooks/UseTrainingContext';
+import { LockAcess } from './components/LockAcess/LockAcess';
 
 function App() {
+  const {authenticated} = UseTrainingContext();
   return (
     <>
       <BrowserRouter>
@@ -21,11 +23,11 @@ function App() {
         <Message/>
         <Routes>
           <Route path="/" element={<Dashboard/>} />
-          <Route path="/profile" element={<Profile/>} />
-          <Route path="/diet" element={<Dieta/>} />
-          <Route path="/training" element={<Training/>} />
-          <Route path="/training/:id" element={<DetailTraining/>} />
-          <Route path="/create" element={<AddTraining/>} />
+          <Route path="/profile" element={authenticated ? <Profile/> : <LockAcess/>} />
+          <Route path="/diet" element={authenticated? <Dieta/> : <LockAcess/>} />
+          <Route path="/training" element={authenticated ? <Training/> : <LockAcess/>} />
+          <Route path="/training/:id" element={authenticated ? <DetailTraining/> : <LockAcess/>} />
+          <Route path="/create" element={authenticated ? <AddTraining/> : <LockAcess/>} />
           <Route path="/login" element={<Login/>} />
           <Route path="/login/teacher" element={<PersonTrainingLogin/>} />
           <Route path="/register" element={<Register/>} />

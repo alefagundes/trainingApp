@@ -22,7 +22,7 @@ export const UseTraining = () => {
     }
 
     const getTrainigById = (id, setTraining) => {
-        axiosApi.get(`/training/${id}`,).then((response) => {
+        axiosApi.get(`/training/${id}`).then((response) => {
             setTraining(response.data);
         }).catch((err) => {
             console.log(err);
@@ -30,7 +30,12 @@ export const UseTraining = () => {
     }
 
     const deleteTrainingById = (id) => {
-        axiosApi.delete('');
+        axiosApi.delete(`/training/${id}`).then((response) => {  
+            setFlashMessage(response.data.message, 'success');
+        }).catch((err) => {
+            setFlashMessage(err.response.data.message, 'error');
+            console.log(err);
+        });
     }
 
     return {trainingCreate, getTraining, getTrainigById, deleteTrainingById}

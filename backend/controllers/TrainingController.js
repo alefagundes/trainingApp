@@ -81,4 +81,39 @@ const getTrainingByIdBack = async (req, res) => {
     res.status(200).json(trainingById);
 }
 
-module.exports = {trainingCreateBack, getAllTrainingBack, getTrainingByIdBack}
+const deleteTrainingById = async (req, res) => {
+    const {id} = req.params;
+    if(!id) {
+        res.status(422).json({message: 'Houve um erro, por favor tente mais tarde'});
+        return
+    }
+    const token = getToken(req);
+    if(!token) {
+        res.status(422).json({message: 'Usuário não atenticado'});
+        return
+    }
+    const user = await getUserByToken(token);
+    if(!user) {
+        res.status(422).json({message: 'Usuário não autenticado ou inexistente'});
+        return
+    }
+    const trainingOfId = await Training.findById(id);
+    if(!trainingOfId) {
+        res.status(422).json({message: 'Treino inválido ou inexistente'});
+        return
+    }
+
+    if(trainingOfId.userId != user._id){
+        res.status(422).json({message: 'Houve um erro, por favor tente mais tarde.'});
+        return
+    }
+    await Training.findByIdAndDelete(id);
+
+    res.status(200).json({message: 'Treino excluido com sucesso.'});
+
+}
+
+module.exports = {trainingCreateBack, 
+                  getAllTrainingBack, 
+                  getTrainingByIdBack, 
+                  deleteTrainingById}

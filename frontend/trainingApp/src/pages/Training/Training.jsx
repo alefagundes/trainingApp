@@ -10,7 +10,7 @@ export const Training = () => {
     const [training, setTraining] = useState([]);
 
     useEffect(() => {
-        getTraining(setTraining);
+       getTraining(setTraining);
     }, [])
 
     return (
