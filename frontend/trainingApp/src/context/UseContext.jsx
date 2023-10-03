@@ -7,7 +7,7 @@ import { UseUser } from "../hooks/UseUser";
 export const ContextProv = createContext();
 
 export const TrainingContext = ({ children }) => {
-  const { login, loginPersonal, logout, register, authenticated } = UseAuth();
+  const { login, loginPersonal, logout, register, authenticated, authPersonal } = UseAuth();
   const {registerDiet, reqGetDiet} = UseDiet();
   const {getUser} = UseUser();
   return (
@@ -19,7 +19,8 @@ export const TrainingContext = ({ children }) => {
              reqGetDiet, 
              registerDiet,
              getUser, 
-             authenticated }}>
+             authenticated, 
+             authPersonal }}>
       {children}
     </ContextProv.Provider>
   );

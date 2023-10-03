@@ -11,7 +11,7 @@ import { UseTrainingContext } from '../../hooks/UseTrainingContext';
 import {FaUserGraduate} from 'react-icons/fa'
 
 export const Navbar = () => {
-  const { authenticated, logout } = UseTrainingContext();
+  const { authenticated, logout, authPersonal } = UseTrainingContext();
 
   return (
     <nav className={style.navbar}>
@@ -19,21 +19,26 @@ export const Navbar = () => {
         Training<span>App</span>
       </Link>
       <ul>
-        {authenticated ? (
+        {authPersonal && authenticated ? 
+          <>
+           <Link to={'/training'}><GiMuscleUp/></Link>
+           <Link to={'/create'}><IoMdAddCircle/></Link>
+           <Link to={'/diet'}><MdFastfood/></Link>
+           <Link to={'/'} onClick={() => logout()}><FiLogOut/></Link>
+         </>
+        : authenticated && !authPersonal ?  
           <>
             <Link to={'/training'}><GiMuscleUp/></Link>
             <Link to={'/create'}><IoMdAddCircle/></Link>
             <Link to={'/profile'}><CgProfile/></Link>
             <Link to={'/diet'}><MdFastfood/></Link>
             <Link to={'/'} onClick={() => logout()}><FiLogOut/></Link>
-          </>
-        ): <>
+         </> : <>
             <Link to={'/'}><AiFillHome/></Link>
             <Link to={'/login'}><BiLogInCircle/></Link>
             <Link to={'/login/teacher'}><FaUserGraduate/></Link>
             <Link to={'/register'}><MdAppRegistration/></Link>
-          </>
-        }
+          </>}
       </ul>
     </nav>
   );

@@ -5,6 +5,7 @@ import { UseFlashMessage } from "./UseFlashMessage.jsx";
 
 export const UseAuth = () => {
   const [authenticated, setAuthenticated] = useState(false);
+  const [authPersonal, setAuthPersonal] = useState(false);
   const { setFlashMessage } = UseFlashMessage();
 
   useEffect(() => {
@@ -69,7 +70,9 @@ export const UseAuth = () => {
     const request = axiosApi
       .post("/users/login/personal", personal)
       .then((response) => {
-        authUser(response.data);
+        setAuthenticated(true);
+        setAuthPersonal(true);
+        localStorage.setItem('token', response.data.token);
         setFlashMessage(msgText, msgType);
         return true;
       })
@@ -84,9 +87,12 @@ export const UseAuth = () => {
   };
 
   const logout = () => {
+    if(authenticated){
+      setAuthPersonal(false);
+    }
     setAuthenticated(false);
     localStorage.removeItem("token");
   };
 
-  return { login, loginPersonal, logout, register, authenticated };
+  return { login, loginPersonal, logout, register, authenticated, authPersonal };
 };
